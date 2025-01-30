@@ -26,7 +26,9 @@ void ClientProcessor::connect(xServer *pServer)
 
   if (!m_pTask->connect(m_strIP.c_str(), m_dwPort))
   {
-    XERR << "[连接]" << m_strIP << ":" << m_dwPort << "失败," << strerror(errno) << XEND;
+    //XERR << "[连接]" << m_strIP << ":" << m_dwPort << "失败," << strerror(errno) << XEND;
+    XERR << "[Conexão] Falha ao conectar a " << m_strIP << ":" << m_dwPort << ", erro: " << strerror(errno) << XEND;
+
     SAFE_DELETE(m_pTask);
     return;
   }
@@ -60,7 +62,9 @@ void ClientProcessor::connect(xServer *pServer)
       break;
   }
 
-  XLOG << "[连接]" << (DWORD)m_eType << "连接成功" << XEND;
+  //XLOG << "[连接]" << (DWORD)m_eType << "连接成功" << XEND;
+  XLOG << "[Conexão]" << (DWORD)m_eType << " conexão bem-sucedida" << XEND;
+
 }
 
 ClientManager::ClientManager(xServer *p):m_pServer(p)
@@ -82,7 +86,8 @@ void ClientManager::closeNp(xNetProcessor *np)
     if (m_list[i].m_pTask == np)
     {
       m_list[i].m_pTask = nullptr;
-      XLOG << "[连接]" << (DWORD)m_list[i].m_eType << "断开连接" << XEND;
+      //XLOG << "[连接]" << (DWORD)m_list[i].m_eType << "断开连接" << XEND;
+      XLOG << "[Conexão]" << (DWORD)m_list[i].m_eType << " desconectado" << XEND;
       break;
     }
   }

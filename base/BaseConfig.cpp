@@ -17,7 +17,7 @@ bool BaseConfig::loadConfig(bool isTest)
   {
     if (!xLuaTable::getMe().open("branch.lua"))
     {
-      XERR << "[BranchConfig], 加载配置branch.lua失败" << XEND;
+      XERR << "[BranchConfig], Falha ao carregar a configuração branch.lua" << XEND;
       return false;
     }
 
@@ -25,13 +25,13 @@ bool BaseConfig::loadConfig(bool isTest)
     xLuaTable::getMe().getLuaData("BranchID", data);
     m_dwBranchID = data.getTableInt("id");
     m_dwInnerBranchID = data.getTableInt("inner_id");
-    XLOG << "[BranchConfig]" << "加载" << m_dwBranchID << XEND;
+    XLOG << "[BranchConfig]" << "Carregado" << m_dwBranchID << XEND;
   }
 
   {
     if (!xLuaTable::getMe().open("BranchConfig.lua"))
     {
-      XERR << "[BranchConfig]" << "加载配置BranchConfig.lua失败" << XEND;
+      XERR << "[BranchConfig]" << "Falha ao carregar a configuração BranchConfig.lua" << XEND;
       return false;
     }
     xLuaData data;
@@ -69,7 +69,7 @@ bool BaseConfig::loadConfig(bool isTest)
         break;
       default:
         {
-          XERR << "[BranchConfig]" << "加载BranchConfig.lua失败,无效的分支" << m_dwBranchID << XEND;
+          XERR << "[BranchConfig]" << "Falha ao carregar BranchConfig.lua, ramo inválido" << m_dwBranchID << XEND;
           return false;
         }
     }
@@ -77,7 +77,7 @@ bool BaseConfig::loadConfig(bool isTest)
 
   if (!xLuaTable::getMe().open("base.lua"))
   {
-    XERR << "[BaseConfig], 加载配置base.lua失败" << XEND;
+    XERR << "[BaseConfig], Falha ao carregar a configuração base.lua" << XEND;
     return false;
   }
 
@@ -92,7 +92,7 @@ bool BaseConfig::loadConfig(bool isTest)
     parseTime(m_strTradeGiveStartTime.c_str(), m_dwTradeGiveStartTime);
   }
   
-  XLOG << "[BaseConfig] 加载配置base.lua trade_give_starttime"<< m_strTradeGiveStartTime << "m_dwTradeGiveStartTime"<< m_dwTradeGiveStartTime << XEND;
+  XLOG << "[BaseConfig] Carregada a configuração base.lua trade_give_starttime" << m_strTradeGiveStartTime << "m_dwTradeGiveStartTime" << m_dwTradeGiveStartTime << XEND;
   return true;
   // DWORD check = m_oData.getTableInt("configcheck");
   // return check;
@@ -120,4 +120,3 @@ DWORD BaseConfig::getInnerBranch()
 
   return m_dwBranchID;
 }
-

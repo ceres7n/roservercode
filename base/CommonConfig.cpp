@@ -76,15 +76,18 @@ bool CommonConfig::loadConfig()
 {
   if (!xLuaTable::getMe().open("CommonConfig.lua"))
   {
-    XERR << "[CommonConfig], 加载配置CommonConfig.lua失败" << XEND;
+    //XERR << "[CommonConfig], 加载配置CommonConfig.lua失败" << XEND;
+    XERR << "[CommonConfig], Falha ao carregar a configuração CommonConfig.lua" << XEND;
     return false;
   }
-  XLOG << "[CommonConfig] 加载配置CommonConfig.lua" << XEND;
+  //XLOG << "[CommonConfig] 加载配置CommonConfig.lua" << XEND;
+  XLOG << "[CommonConfig] Configuração CommonConfig.lua carregada" << XEND;
 
   m_oData.clear();
   xLuaTable::getMe().getLuaData("CommonConfig", m_oData);
 
-  XLOG << "[CommonConfig], load"<<m_oData.getTableString("test")<<XEND;
+  //XLOG << "[CommonConfig], load"<<m_oData.getTableString("test")<<XEND;
+  XLOG << "[CommonConfig], carregando "<<m_oData.getTableString("test")<<XEND;
 
   if (m_oData.has("open_trade_server"))
   {
@@ -112,7 +115,9 @@ bool CommonConfig::loadConfig()
   {
     m_dwClientCmdSec = m_oData.getTableInt("client_cmd_sec");
   }
-  XLOG << "[通用配置]" << "客户端消息频率" << m_dwClientCmdMax << m_dwClientCmdSec << XEND;
+  //XLOG << "[通用配置]" << "客户端消息频率" << m_dwClientCmdMax << m_dwClientCmdSec << XEND;
+  XLOG << "[Configuração Geral]" << "Frequência de mensagens do cliente" << m_dwClientCmdMax << m_dwClientCmdSec << XEND;
+
 
   // 开服配置
   if (m_oData.has("ActiveOnline"))
@@ -128,24 +133,31 @@ bool CommonConfig::loadConfig()
     }
     for (auto &it : m_oActiveOnlineList)
     {
-      XLOG << "[开服配置]" << "开服时长" << it.first << "最大在线" << it.second.dwOnline << "最大活跃" << it.second.dwActive << XEND;
+      //XLOG << "[开服配置]" << "开服时长" << it.first << "最大在线" << it.second.dwOnline << "最大活跃" << it.second.dwActive << XEND;
+      XLOG << "[Configuração de Abertura de Servidor]" << "Duração de abertura" << it.first << "Máximo Online" << it.second.dwOnline << "Máximo Ativo" << it.second.dwActive << XEND;
+
       if (it.second.dwOnline > m_dwOnlineUserMax)
         m_dwOnlineUserMax = it.second.dwOnline;
       if (it.second.dwActive > m_dwActiveUserMax)
         m_dwActiveUserMax = it.second.dwActive;
     }
   }
-  XLOG << "[开服配置]" << "创建角色最大活跃" << m_dwActiveUserMax << "最大在线" << m_dwOnlineUserMax << XEND;
+  //XLOG << "[开服配置]" << "创建角色最大活跃" << m_dwActiveUserMax << "最大在线" << m_dwOnlineUserMax << XEND;
+  XLOG << "[Configuração de Abertura de Servidor]" << "Máximo de jogadores ativos ao criar personagem" << m_dwActiveUserMax << "Máximo Online" << m_dwOnlineUserMax << XEND;
+
   if (m_oData.has("once_open_zone_num"))
   {
     m_dwOnceOpenZoneNum = m_oData.getTableInt("once_open_zone_num");
   }
-  XLOG << "[开服配置]" << "一次新开区数量" << m_dwOnceOpenZoneNum << XEND;
+  //XLOG << "[开服配置]" << "一次新开区数量" << m_dwOnceOpenZoneNum << XEND;
+  XLOG << "[Configuração de Abertura de Servidor]" << "Número de novas zonas abertas de uma vez" << m_dwOnceOpenZoneNum << XEND;
   if (m_oData.has("new_zone_protective_time"))
   {
     m_dwNewZoneProtectiveTime = m_oData.getTableInt("new_zone_protective_time") * MIN_T;
   }
-  XLOG << "[开服配置]" << "新区保护时间" << m_dwNewZoneProtectiveTime << XEND;
+  //XLOG << "[开服配置]" << "新区保护时间" << m_dwNewZoneProtectiveTime << XEND;
+  XLOG << "[Configuração de Abertura de Servidor]" << "Tempo de proteção da nova zona" << m_dwNewZoneProtectiveTime << XEND;
+
   // 开服配置
 
   if (m_oData.has("scope_max_user_num"))
@@ -157,7 +169,9 @@ bool CommonConfig::loadConfig()
   {
     m_dwMaxFriendScopeNum = m_oData.getTableInt("scope_max_friend_num");
   }
-  XLOG << "[通用配置]" << "地图同屏限制" << m_dwMaxScopeNum << m_dwMaxFriendScopeNum << XEND;
+  
+  //XLOG << "[通用配置]" << "地图同屏限制" << m_dwMaxScopeNum << m_dwMaxFriendScopeNum << XEND;
+  XLOG << "[Configuração Geral]" << "Limite de exibição no mapa na mesma tela" << m_dwMaxScopeNum << m_dwMaxFriendScopeNum << XEND;
 
   if (m_oData.has("mail_send_min_tick"))
     m_dwMailSendMinTick = m_oData.getTableInt("mail_send_min_tick");
@@ -222,7 +236,9 @@ bool CommonConfig::loadConfig()
     m_dwClientCmdLimitMax = m_oData.getTableInt("ClientCmdLimitMax");
   if (m_oData.has("ClientCmdLimitSec"))
     m_dwClientCmdLimitSec = m_oData.getTableInt("ClientCmdLimitSec");
-  XLOG << "[通用配置]" << "客户端消息频率控制" << "最大消息数" << m_dwClientCmdLimitMax << "时间间隔" << m_dwClientCmdLimitSec <<XEND;
+  //XLOG << "[通用配置]" << "客户端消息频率控制" << "最大消息数" << m_dwClientCmdLimitMax << "时间间隔" << m_dwClientCmdLimitSec <<XEND;
+  XLOG << "[Configuração Geral]" << "Controle de frequência de mensagens do cliente" << "Número máximo de mensagens" << m_dwClientCmdLimitMax << "Intervalo de tempo" << m_dwClientCmdLimitSec << XEND;
+
 
   if (m_oData.has("ClientCmdLimits"))
   {
@@ -232,7 +248,9 @@ bool CommonConfig::loadConfig()
       for (auto &param : cmd.second.m_table)
       {
         m_mapClientCmdLimit[((DWORD)(atoi(cmd.first.c_str()))<<16) + (DWORD)(atoi(param.first.c_str()))] = param.second.getInt();
-        XLOG << "[通用配置]" << "客户端消息频率控制" << "cmd" << cmd.first << "param" << param.first << "最大消息数" << param.second.getInt() <<XEND;
+        //XLOG << "[通用配置]" << "客户端消息频率控制" << "cmd" << cmd.first << "param" << param.first << "最大消息数" << param.second.getInt() <<XEND;
+        XLOG << "[Configuração Geral]" << "Controle de frequência de mensagens do cliente" << "Comando" << cmd.first << "Parâmetro" << param.first << "Número máximo de mensagens" << param.second.getInt() << XEND;
+
       }
     }
   }
@@ -295,11 +313,15 @@ bool CommonConfig::loadConfig()
   if (m_oData.has("upyun_authvalue"))
   {
     if (base64Encode(m_oData.getTableString("upyun_authvalue"), &m_strUpyunAuthValue) == false)
-      XERR << "[通用配置]" << "upyun auth value转码失败" << XEND;
+      //XERR << "[通用配置]" << "upyun auth value转码失败" << XEND;
+      XERR << "[Configuração Geral]" << "Falha ao converter o valor de autenticação upyun" << XEND;
+
   }
   else
   {
-    XERR << "[通用配置]" << "upyun auth value未配置" << XEND;
+    //XERR << "[通用配置]" << "upyun auth value未配置" << XEND;
+    XERR << "[Configuração Geral]" << "Valor de autenticação upyun não configurado" << XEND;
+
   }
 
   if (m_oData.has("upyun_password"))
@@ -312,7 +334,8 @@ bool CommonConfig::loadConfig()
   }
   else
   {
-    XERR << "[通用配置]" << "upyun password未配置" << XEND;
+    //XERR << "[通用配置]" << "upyun password未配置" << XEND;
+    XERR << "[Configuração Geral]" << "Senha upyun não configurada" << XEND;
   }
   
   if (m_oData.has("login_sign"))
@@ -352,7 +375,9 @@ bool CommonConfig::loadConfig()
   }
   else
   {
-    XERR << "[通用配置]" << "chat_filter_list_size 未配置, 使用默认配置：65535" << XEND;
+    //XERR << "[通用配置]" << "chat_filter_list_size 未配置, 使用默认配置：65535" << XEND;
+    XERR << "[Configuração Geral]" << "Tamanho da lista de filtro de chat não configurado, usando padrão: 65535" << XEND;
+
   }
 
   if(m_oData.has("chat_filter_timeout"))
@@ -361,7 +386,9 @@ bool CommonConfig::loadConfig()
   }
   else
   {
-    XERR << "[通用配置]" << "chat_filter_timeout 未配置, 使用默认配置：1" << XEND;
+    //XERR << "[通用配置]" << "chat_filter_timeout 未配置, 使用默认配置：1" << XEND;
+    XERR << "[Configuração Geral]" << "Tempo limite do filtro de chat não configurado, usando padrão: 1" << XEND;
+
   }
 
   if (m_oData.has("default_language"))
@@ -398,7 +425,9 @@ bool CommonConfig::loadConfig()
   if (m_oData.has("pack_sync_new"))
     m_bPackSyncNew = m_oData.getTableInt("pack_sync_new") == 1;
 
-  XLOG << "[CommonConfig]" << "玩家分组数:" << SCENE_USER_GROUP_NUM << XEND;
+  //XLOG << "[CommonConfig]" << "玩家分组数:" << SCENE_USER_GROUP_NUM << XEND;
+  XLOG << "[CommonConfig]" << "Número de grupos de jogadores:" << SCENE_USER_GROUP_NUM << XEND;
+
 
   if (m_oData.has("supergvg_scene"))
     m_strSuperGvgSceneName = m_oData.getTableString("supergvg_scene");
@@ -452,7 +481,9 @@ bool CommonConfig::loadLanguageConfig()
 
     if (!xLuaTable::getMe().open(("lang/" + name + ".txt").c_str()))
     {
-      XERR << "[CommonConfig], 加载配置" + name + ".txt失败，可能不存在" << XEND;
+      //XERR << "[CommonConfig], 加载配置" + name + ".txt失败，可能不存在" << XEND;
+      XERR << "[CommonConfig], Falha ao carregar a configuração " + name + ".txt, pode não existir" << XEND;
+
       continue;
     }
 
@@ -475,7 +506,8 @@ bool CommonConfig::loadLanguageConfig()
         };
 
         m.second.foreach(func);
-        XLOG << "[" + name + ".txt] Chinese配置加载完成, 加载数目: " << dict.size() << XEND;
+        //XLOG << "[" + name + ".txt] Chinese配置加载完成, 加载数目: " << dict.size() << XEND;
+        XLOG << "[" + name + ".txt] Configuração chinesa carregada com sucesso, número de entradas carregadas: " << dict.size() << XEND;
 
         break;
       }

@@ -79,93 +79,93 @@ class CommonConfig : public xSingleton<CommonConfig>
     string getTranslateString(const string& content, DWORD language);
 
   public:
-    // 消息频率检测
+    // Detecção de frequência de mensagens
     //
-    // 最大消息数量
+    // Número máximo de mensagens
     static DWORD m_dwClientCmdMax;
-    // 检测间隔
+    // Intervalo de detecção
     static DWORD m_dwClientCmdSec;
-    // 创角最大活跃
+    // Máximo de usuários ativos ao criar personagem
     static DWORD m_dwActiveUserMax;
-    // 创角最大在线
+    // Máximo de usuários online ao criar personagem
     static DWORD m_dwOnlineUserMax;
-    // 活跃在线配置
+    // Configuração de usuários ativos e online
     static std::map<DWORD, ActiveOnline> m_oActiveOnlineList;
-    // 一次新开区数量
+    // Número de zonas abertas de uma vez
     static DWORD m_dwOnceOpenZoneNum;
-    // 新开区保护时间
+    // Tempo de proteção de nova zona
     static DWORD m_dwNewZoneProtectiveTime;
-    // 地图人数限制
+    // Limite de pessoas no mapa
     static DWORD m_dwMaxScopeNum;
     static DWORD m_dwMaxFriendScopeNum;
 
-    // 系统邮件在线发送间隔
+    // Intervalo de envio de email do sistema online
     static DWORD m_dwMailSendMinTick;
     static DWORD m_dwMailSendMaxTick;
     static DWORD m_dwMailSendMaxCount;
 
-    // 技能动作延迟
+    // Atraso de ação de habilidade
     static DWORD m_dwSkillDelayMs;
-    // 技能前位置同步容错距离
+    // Tolerância de distância de sincronização de posição antes da habilidade
     static float m_fSkillSyncDis;
-    // 攻击目标时, 若目标在移动, 移动速度对技能释放距离容错误差影响
+    // Ao atacar um alvo, se o alvo estiver se movendo, a velocidade de movimento afeta a tolerância de distância de lançamento da habilidade
     static float m_fEnemySpedErrDis;
-    // 技能队列延迟时间
+    // Tempo de atraso na fila de habilidades
     static DWORD m_dwSkillQueueDelayMs;
-    // 技能位置错误队列保存长度
+    // Comprimento máximo da fila de erros de posição de habilidade
     static DWORD m_dwSkillDisQueueMax;
-    // 技能队列超时统计时间(s)
+    // Tempo de contagem de tempo limite da fila de habilidades (s)
     static DWORD m_dwSkillQueueCntTime;
-    // 技能打断容错时间(ms)
+    // Tolerância de tempo de interrupção de habilidade (ms)
     static DWORD m_dwSkillBreakErr;
-    // 技能位移容错误差
+    // Tolerância de distância de movimento de habilidade
     static float m_fSkillMoveDisErr;
-    // 账号删除时间
+    // Tempo de exclusão de conta
     static std::map<DWORD, DWORD> m_mapDelCharTime;
-    // 账号删除功能cd, 单位秒
+    // Tempo de espera para exclusão de conta, em segundos
     static DWORD m_dwDelCharCD;
-    // 忽略计数的协议
+    // Protocolos ignorados na contagem
     static std::map<DWORD, TSetDWORD> m_mapIgnoreCmd;
 
-    // 消息发送频率控制
-    // 所有类型消息最大数量
+    // Controle de frequência de envio de mensagens
+    // Número máximo de mensagens de todos os tipos
     static DWORD m_dwClientCmdLimitMax;
-    // 检测间隔
+    // Intervalo de detecção
     static DWORD m_dwClientCmdLimitSec;
-    // 特定消息号对应最大数量
+    // Número máximo de mensagens para números de mensagem específicos
     static std::map<DWORD, DWORD> m_mapClientCmdLimit;
 
-    // 社交加载帧处理时间
+    // Tempo de processamento de carga social
     static DWORD m_dwSocialLoadTime;
-    // 公会帧处理超时时间
+    // Tempo limite de processamento de quadros de guilda
     static DWORD m_dwGuildFrameOvertime;
-    // 公会优化开关
+    // Interruptor de otimização de guilda
     static bool m_bGuildOptOpen;
     
-    //安全密码
+    // Senha de segurança
     static DWORD m_dwPwdFailTimes;
     static DWORD m_dwPwdIntervalTime;
 
-    //斗技场溜溜猴开放
+    // Abertura de arena de combate
     bool m_bPvpLLH = true;
-    //斗技场沙漠之狼
+    // Arena de combate Lobo do Deserto
     bool m_bPvpSMZL = true;
-    //斗技场华丽金属
+    // Arena de combate Metal Brilhante
     bool m_bPvpHLJS = true;
 
-    // upyun auth value
+    // Valor de autenticação upyun
     static string m_strUpyunAuthValue;
-    // upyun form api
+    // API de formulário upyun
     static string m_strUpyunPwd;
     static bool upyun_form_str(std::string savekey, std::string &out_policy, std::string &out_signature, std::string type = "jpg");
 
-    // tf分支gm指令白名单
+    // Lista branca de comandos GM para a filial tf
     static std::set<QWORD> m_setTFGMWhiteList;
 
-    // 送审服 platid
+    // ID da plataforma do servidor de verificação
     static DWORD m_dwVerifyServerPlatID;
 
-    // 聊天过滤
+    // Filtro de chat
     static DWORD m_dwChatFilterListSize;
     static DWORD m_dwChatFilterTimeout;
 
@@ -173,37 +173,37 @@ class CommonConfig : public xSingleton<CommonConfig>
     static string m_strSafeDeviceSign;
     static string m_strAuthorizeSign;
     
-    // 切线相关
+    // Verificação de nível de mudança de linha
     static bool m_bJumpZoneCheckLevel;
 
     static DWORD m_dwFluentLogCount;
     static DWORD m_dwFluentRetryCount;
 
-    // 公会GM指令
+    // Comando GM de guilda
     static DWORD m_dwGuildGMFlushTick;
 
-    // lua报错推送间隔
+    // Intervalo de envio de erro de lua
     static DWORD m_dwLuaAlterCD;
 
-    // 副本每秒中踢人上限
+    // Limite de expulsão de instância por segundo
     static DWORD m_dwOneSecMaxKickUserNum;
 
-    // buff 执行时长打印
+    // Impressão de duração de execução de buff
     static DWORD m_dwBuffExecPrintTime;
 
-    // 技能执行时长打印
+    // Impressão de duração de execução de habilidade
     static DWORD m_dwSkillExecPrintTime;
     
-    // 默认语言
+    // Idioma padrão
     static ELanguageType m_eDefaultLanguage;
     
-    // 属性计算开关
+    // Interruptor de cálculo de atributos
     static bool m_bLua;
 
-    // gvg决战专用场景
+    // Nome da cena especial para batalha GVG
     static string m_strSuperGvgSceneName;
 
-    // gvg决战属性刷新时间间隔
+    // Intervalo de atualização de atributos para batalha GVG
     static DWORD m_dwSuperGvgRefreshInterval;
 
     static DWORD getDelCharTime(DWORD dwLv)
@@ -237,12 +237,12 @@ class CommonConfig : public xSingleton<CommonConfig>
       return m_setTFGMWhiteList.find(accid) != m_setTFGMWhiteList.end();
     }
 
-    // 备份数据开关
+    // Interruptor de backup de dados
     static bool m_bOpenRollback;
 
-    // 玩家分组
+    // Agrupamento de jogadores
     static DWORD SCENE_USER_GROUP_NUM;
 
-    // 包裹同步
+    // Sincronização de pacote
     static bool m_bPackSyncNew;
 };
