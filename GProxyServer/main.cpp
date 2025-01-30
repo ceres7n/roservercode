@@ -24,6 +24,6 @@ int main(int argc, char* argv[])
     SAFE_DELETE(thisServer);
   }
   else
-    XERR << "命令行参数错误 请指定 -n ServerName" << XEND;
+    XERR << "Erro nos parâmetros da linha de comando. Por favor, especifique -n ServerName" << XEND;
   return 0;
 }

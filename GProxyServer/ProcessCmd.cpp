@@ -22,7 +22,7 @@ bool GProxyServer::doCmd(xNetProcessor* np, unsigned char* buf, unsigned short l
 
               m_oProxyList[id].m_dwTaskNum = rev.tasknum();
 
-              XLOG << "[Proxy]" << "id:" << id << "Task Num:" << rev.tasknum() << XEND;
+              XLOG << "[Proxy]" << "id:" << id << "Número de Tarefas:" << rev.tasknum() << XEND;
               return true;
             }
             break;
@@ -42,15 +42,15 @@ bool GProxyServer::doCmd(xNetProcessor* np, unsigned char* buf, unsigned short l
               {
                 if (it->second.m_pNetProcessor != nullptr)
                 {
-                  XERR << "[Proxy注册]" << id << np << "重复添加" << XEND;
-                  addCloseList(np, TerminateMethod::terminate_active, "Proxy注册重复添加");
+                  XERR << "[Registro de Proxy]" << id << np << "Adição duplicada" << XEND;
+                  addCloseList(np, TerminateMethod::terminate_active, "Registro de Proxy duplicado");
                   return true;
                 }
               }
 
               m_oProxyList[id].m_pNetProcessor = np;
               np->sendCmd(buf, len);
-              XLOG << "[Proxy注册]" << id << np << "注册成功" << XEND;
+              XLOG << "[Registro de Proxy]" << id << np << "Registro bem-sucedido" << XEND;
 
               return true;
             }
@@ -65,4 +65,3 @@ bool GProxyServer::doCmd(xNetProcessor* np, unsigned char* buf, unsigned short l
   }
   return false;
 }
-

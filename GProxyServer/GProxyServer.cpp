@@ -16,12 +16,12 @@ bool GProxyServer::init()
 {
   if (!addDataBase(RO_DATABASE_NAME, false))
   {
-    XERR << "[加载RO信息],初始化数据库连接失败:" << RO_DATABASE_NAME << XEND;
+    XERR << "[Carregar informações do RO], falha ao inicializar a conexão com o banco de dados:" << RO_DATABASE_NAME << XEND;
     return false;
   }
-  XLOG << "[加载RO信息],加载数据库" << RO_DATABASE_NAME << XEND;
+  XLOG << "[Carregar informações do RO], carregando banco de dados" << RO_DATABASE_NAME << XEND;
 
-  xField *field = getDBConnPool().getField(RO_DATABASE_NAME, "proxy"); // 启动加载
+  xField *field = getDBConnPool().getField(RO_DATABASE_NAME, "proxy"); // Carregar ao iniciar
   if (field)
   {
     char where[128];
@@ -35,7 +35,7 @@ bool GProxyServer::init()
       if (ret)
       {
         setServerPort(set[0].get<DWORD>("port"));
-        XLOG << "[加载Proxy信息],加载port:" << set[0].get<DWORD>("port") << XEND;
+        XLOG << "[Carregar informações do Proxy], carregando porta:" << set[0].get<DWORD>("port") << XEND;
       }
     }
     else
@@ -46,7 +46,7 @@ bool GProxyServer::init()
 
   if (!listen())
   {
-    XERR << "[" << getServerName() << "],监听 Zone 失败" << XEND;
+    XERR << "[" << getServerName() << "], falha ao escutar Zone" << XEND;
     return false;
   }
 
@@ -67,7 +67,7 @@ void GProxyServer::v_closeNp(xNetProcessor* np)
   {
     if (it->second.m_pNetProcessor == np)
     {
-      XLOG << "[连接]" << "删除" << it->first << np << XEND;
+      XLOG << "[Conexão]" << "Deletar" << it->first << np << XEND;
       m_oProxyList.erase(it);
       break;
     }
@@ -119,13 +119,13 @@ void GProxyServer::v_timetick()
 
   QWORD _e = oFrameTimer.uElapse();
   if (_e > 30000)
-    XLOG << "[帧耗时-timetick]," << _e << " 微秒" << XEND;
+    XLOG << "[Tempo de quadro - timetick]," << _e << " microssegundos" << XEND;
 
   oFrameTimer.elapseStart();
   process();
   _e = oFrameTimer.uElapse();
   if (_e > 30000)
-    XLOG << "[帧耗时-process]," << _e << " 微秒" << XEND;
+    XLOG << "[Tempo de quadro - process]," << _e << " microssegundos" << XEND;
 
   if (m_oOneMinTimer.timeUp(now()))
   {
@@ -144,11 +144,11 @@ void GProxyServer::process()
       m_oMessageStat.start(((xCommand *)cmd->second)->cmd, ((xCommand *)cmd->second)->param);
       if (!doCmd(np, cmd->second, cmd->first))
       {
-        XDBG << "[消息处理错误]," << inet_ntoa(np->getIP()) << "," << np->getPort() << "," << ((xCommand *)cmd->second)->cmd << "," << ((xCommand *)cmd->second)->param << XEND;
+        XDBG << "[Erro no processamento da mensagem]," << inet_ntoa(np->getIP()) << "," << np->getPort() << "," << ((xCommand *)cmd->second)->cmd << "," << ((xCommand *)cmd->second)->param << XEND;
       }
       else
       {
-        // XDBG("[消息处理],消息处理,%u,%u", ((xCommand *)cmd->second)->cmd, ((xCommand *)cmd->second)->param);
+        // XDBG("[Processamento da mensagem], mensagem processada, %u, %u", ((xCommand *)cmd->second)->cmd, ((xCommand *)cmd->second)->param);
       }
       m_oMessageStat.end();
       np->popCmd();
@@ -170,17 +170,17 @@ void GProxyServer::print()
     total += it.second.m_dwTaskNum;
     groupCount[groupid] += it.second.m_dwTaskNum;
     portCount[port] += it.second.m_dwTaskNum;
-    XLOG << "[连接统计]" << "id:" << it.first << "连接数:" << it.second.m_dwTaskNum << XEND;
+    XLOG << "[Estatísticas de conexão]" << "id:" << it.first << "número de conexões:" << it.second.m_dwTaskNum << XEND;
   }
 
   for (auto &it : groupCount)
   {
-    XLOG << "[分组连接统计]" << "group:" << it.first << "连接数:" << it.second << XEND;
+    XLOG << "[Estatísticas de conexão por grupo]" << "grupo:" << it.first << "número de conexões:" << it.second << XEND;
   }
   for (auto &it : portCount)
   {
-    XLOG << "[端口连接统计]" << "port:" << it.first << "连接数:" << it.second << XEND;
+    XLOG << "[Estatísticas de conexão por porta]" << "porta:" << it.first << "número de conexões:" << it.second << XEND;
   }
 
-  XLOG << "[总连接统计]" << "连接数:" << total << XEND;
+  XLOG << "[Estatísticas totais de conexão]" << "número de conexões:" << total << XEND;
 }
