@@ -1,0 +1,117 @@
+../obj/Release/libbase/SysmsgConfig.o: ../base/config/SysmsgConfig.cpp \
+ ../base/config/SysmsgConfig.h ../base/xlib/xSingleton.h \
+ ../base/xlib/xDefine.h ../base/xlib/xNewMem.h \
+ ../base/protobuf/SceneItem.pb.h ../base/protobuf/xCmd.pb.h \
+ ../base/protobuf/ProtoCommon.pb.h ../base/protobuf/SceneUser.pb.h \
+ ../base/xlib/xLog.h ../base/protobuf/ProtoCommon.pb.h \
+ ../base/protobuf/SessionSociality.pb.h ../base/TableManager.h \
+ ../base/xlib/xEntryManager.h ../base/xlib/xEntry.h ../base/xlib/xTools.h \
+ ../base/xlib/xTime.h ../base/xlib/xCommand.h ../base/protobuf/xCmd.pb.h \
+ ../base/xlib/xNoncopyable.h ../base/xlib/xPool.h ../base/xLuaTable.h \
+ ../base/xlib/lua/lua.h ../base/xlib/lua/luaconf.h \
+ ../base/xlib/lua/lualib.h ../base/xlib/lua/lua.h \
+ ../base/xlib/lua/lauxlib.h ../base/xlib/xDBFields.h \
+ /usr/include/mysql/mysql.h /usr/include/mysql/mysql_version.h \
+ /usr/include/mysql/mysql_com.h /usr/include/mysql/mysql_time.h \
+ /usr/include/mysql/my_list.h /usr/include/mysql/typelib.h \
+ /usr/include/mysql/my_alloc.h ../base/xlib/xNoncopyable.h \
+ ../base/xlib/json/json.h ../base/xlib/json/autolink.h \
+ ../base/xlib/json/config.h ../base/xlib/json/value.h \
+ ../base/xlib/json/forwards.h ../base/xlib/json/reader.h \
+ ../base/xlib/json/features.h ../base/xlib/json/writer.h \
+ ../base/TableStruct.h ../base/xlib/xEntry.h \
+ ../base/config/RoleDataConfig.h ../base/xPos.h
+
+../base/config/SysmsgConfig.h:
+
+../base/xlib/xSingleton.h:
+
+../base/xlib/xDefine.h:
+
+../base/xlib/xNewMem.h:
+
+../base/protobuf/SceneItem.pb.h:
+
+../base/protobuf/xCmd.pb.h:
+
+../base/protobuf/ProtoCommon.pb.h:
+
+../base/protobuf/SceneUser.pb.h:
+
+../base/xlib/xLog.h:
+
+../base/protobuf/ProtoCommon.pb.h:
+
+../base/protobuf/SessionSociality.pb.h:
+
+../base/TableManager.h:
+
+../base/xlib/xEntryManager.h:
+
+../base/xlib/xEntry.h:
+
+../base/xlib/xTools.h:
+
+../base/xlib/xTime.h:
+
+../base/xlib/xCommand.h:
+
+../base/protobuf/xCmd.pb.h:
+
+../base/xlib/xNoncopyable.h:
+
+../base/xlib/xPool.h:
+
+../base/xLuaTable.h:
+
+../base/xlib/lua/lua.h:
+
+../base/xlib/lua/luaconf.h:
+
+../base/xlib/lua/lualib.h:
+
+../base/xlib/lua/lua.h:
+
+../base/xlib/lua/lauxlib.h:
+
+../base/xlib/xDBFields.h:
+
+/usr/include/mysql/mysql.h:
+
+/usr/include/mysql/mysql_version.h:
+
+/usr/include/mysql/mysql_com.h:
+
+/usr/include/mysql/mysql_time.h:
+
+/usr/include/mysql/my_list.h:
+
+/usr/include/mysql/typelib.h:
+
+/usr/include/mysql/my_alloc.h:
+
+../base/xlib/xNoncopyable.h:
+
+../base/xlib/json/json.h:
+
+../base/xlib/json/autolink.h:
+
+../base/xlib/json/config.h:
+
+../base/xlib/json/value.h:
+
+../base/xlib/json/forwards.h:
+
+../base/xlib/json/reader.h:
+
+../base/xlib/json/features.h:
+
+../base/xlib/json/writer.h:
+
+../base/TableStruct.h:
+
+../base/xlib/xEntry.h:
+
+../base/config/RoleDataConfig.h:
+
+../base/xPos.h:
